@@ -1,20 +1,12 @@
-const defaultState = {
-    focused: false
-};
+//this is a main reducer, combine different reducers from different components
+import { combineReducers } from 'redux';
 
-//this is a pure function, that is, fixed input -> fixed output, and no side effect(can't change the variable)
-export default (state=defaultState, action) => {
-    if (action.type === 'search_focus') {
-        return {
-            focused: true
-        }
-    }
+//here, to avoid making the path too long, create an index file as an entry of Header/store, look for /Header/store will guid to the Header/store/reducer
+import {reducer as headerReducer} from '../common/header/store';
 
-    if (action.type === 'search_blur') {
-        return {
-            focused: false
-        }
-    }
 
-    return state;
-}
+const reducer =   combineReducers({
+    header: headerReducer
+})
+
+export default reducer;

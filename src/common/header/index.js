@@ -1,7 +1,7 @@
 import React from 'react';
 //connect the provider and store
 import { connect } from 'react-redux';
-
+import  { actionCreators}  from './store';
 import {
     HeaderWrapper,
     Logo, //import static source here
@@ -18,6 +18,7 @@ import { CSSTransition } from 'react-transition-group';
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 // Now Header is a component without state, has better performance 
+//Header is an UI component, only focus on UI 
 const Header = (props)=> {
     return (
         <HeaderWrapper> 
@@ -61,27 +62,22 @@ const Header = (props)=> {
 
 
 //map the state to props, so we can use props to get the state
+
 const mapStateToPorps = (state) => {
     return {
-        focused: state.focused
+        focused: state.header.focused
     }
 }
 
 const mapDispathToProps = (dispatch) => {
     return {
         handleInputFocus() {
-            const action = {
-                type: 'search_focus'
-            };
-            dispatch(action); // send this action to store, store give the prev data and new data to reducer, reducer
+            //use action creator to import action. To break actions into "components", good for maintainous
+            dispatch(actionCreators.searchFocus()); // send this action to store, store give the prev data and new data to reducer, reducer
         },
         handleBlur() {
-            const action = {
-                type: 'search_blur'
-            };
-            dispatch(action); // send this action to store, store give the prev data and new data to reducer, reducer
+            dispatch(actionCreators.searchBlur()); // send this action to store, store give the prev data and new data to reducer, reducer
         }
-
     }
 }
 
