@@ -23,7 +23,6 @@ export const Globalstyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-
 `
 
 
