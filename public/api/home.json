@@ -1,0 +1,51 @@
+{
+    "success": true,
+    "data": {
+        "topicList": [
+            {
+            "id":1, 
+            "title": "social hotspot",
+            "imgUrl": "https://lupic.cdn.bcebos.com/20210629/1444964_14.jpg"
+            },
+            {
+            "id":2,
+            "title": "'your idea'",
+            "imgUrl": "https://lupic.cdn.bcebos.com/20210629/1444964_14.jpg"
+            }
+        ],
+        "articleList": [
+            {
+            "id": 1,
+            "title": "This is a h3 list",
+            "desc": "this is a p under h3"
+            },
+            {
+            "id": 2,
+            "title": "This is a h3 list",
+            "desc": "this is a p under h3"
+            },
+            {
+            "id": 3,
+            "title": "This is a h3 list",
+            "desc": "this is a p under h3"
+            }
+        ],
+    
+        "recommendList": [{
+            "id": 1,
+            "title": "recommend 1",
+            "imgUrl": "https://img.lovepik.com/element/40117/1528.png_860.png!/format/webp"
+            },
+            {
+            "id": 2,
+            "title": "recommend 2",
+            "imgUrl": "https://img.lovepik.com/element/40117/1528.png_860.png!/format/webp"
+            },
+            {
+            "id": 3,
+            "title": "recommend 3",
+            "imgUrl": "https://img.lovepik.com/element/40117/1528.png_860.png!/format/webp"
+            }
+        ]
+    }
+}
