@@ -14,16 +14,17 @@ class App extends Component {
     return ( 
       // Provider provides the information in store to the inside components (Header)
         <Provider store={store}>
-          <div>
-            <Header />
+         
+            
             <BrowserRouter>
+              <Header />
               <Routes>
                 <Route path='/' element={<Home />}></Route>
                 <Route path='/detail' element={<Detail />}></Route>
               </Routes>
             </BrowserRouter>
             
-          </div>
+          
         </Provider> 
     );
   }

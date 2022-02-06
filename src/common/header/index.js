@@ -18,6 +18,7 @@ import {
     SearchWrapper
 } from './style';
 import { CSSTransition } from 'react-transition-group';
+import { Link } from 'react-router-dom';
 
 
 
@@ -61,7 +62,9 @@ class Header extends Component{
         return (
             <HeaderWrapper> 
                 {/* HeaderWrapper is a label with style */}
-                <Logo />
+                <Link to='/'>
+                    <Logo />
+                </Link>
                 <Nav>
                     <NavItem className='left active'>Main Page</NavItem>
                     <NavItem className='left'>Download</NavItem>

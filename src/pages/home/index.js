@@ -1,18 +1,27 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Topic from './components/Topic';
 import List from './components/List';
 import Writer from './components/Writer';
 import Recommend from './components/Recommend';
-import axios from 'axios';
+import { actionCreators } from './store';
 import { connect } from 'react-redux';
-
+import { BackTop } from './style';
 import { 
     HomeWrapper,
     HomeLeft,
     HomeRight,
  } from './style';
 
-class Home extends Component {
+class Home extends PureComponent {
+    //improve performance, only re-render when the data related to the current component is changed
+    shouldComponentUpdate(){
+
+    }
+
+    handleScrollTop(){
+        window.scroll(0,0);
+    }
+
     render() {
         return (
             <HomeWrapper>
@@ -27,29 +36,43 @@ class Home extends Component {
                     <Recommend />
                     <Writer />
                 </HomeRight>
+                {this.props.showScroll ? <BackTop onClick={this.handleScrollTop}>go top</BackTop>: null}
+                
             </HomeWrapper>
         );
     }
 
     componentDidMount(){
-        axios.get('/api/home.json').then((res)=>{
-            const result = res.data.data;
-            const action = {
-                type: 'change_home_data',
-                topicList: result.topicList,
-                articleList: result.articleList,
-                recommendList: result.recommendList
-            }
-            this.props.changeHomeData(action)
-            console.log(result);
-        })
+        this.props.changeHomeData();
+        this.bindEvents();
+    }
+
+    componentWillUnmount(){
+        window.removeEventListener('scroll', this.props.changeScrollTopShow)
+    }
+
+    bindEvents(){
+        window.addEventListener('scroll', this.props.changeScrollTopShow)
     }
 }
 
+const mapState = (state) => ({
+    showScroll: state.getIn(['home', 'showScroll'])
+})
+
+
 const mapDispatch = (dispatch) => ({
-    changeHomeData(action) {
-        dispatch(action);
+    changeHomeData() {
+        dispatch(actionCreators.getHomeInfo());
+    },
+    changeScrollTopShow(){
+        if (document.documentElement.scrollTop > 200) {
+            dispatch(actionCreators.toggleTopShow(true))
+        }else {
+            dispatch(actionCreators.toggleTopShow(false))
+        }
     }
 });
-export default connect(null, mapDispatch)(Home);
+
+export default connect(mapState, mapDispatch)(Home);
 
